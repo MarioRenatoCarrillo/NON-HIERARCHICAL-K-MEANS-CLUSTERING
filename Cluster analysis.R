@@ -38,13 +38,13 @@ apply(state.x77[,vars], 2, sd)
 
 # First, we started with some initial partition or “seed points” which define cluster centers.
 
-# The algorithm I used is the following 
+# The algorithm I used is the following: 
 # 
-# – Partition the N objects into K distinct clusters C1, . . . , CK
+# 1)  Partition the N objects into K distinct clusters C1, . . . , CK
 # 
-# ∗ Assign object Xi to cluster Ck that has closest mean
+# 2.1)  Assign object Xi to cluster Ck that has closest mean
 # 
-# ∗ Update cluster centroids if Xi is reassigned to the new cluster
+# 2.2)  Update cluster centroids if Xi is reassigned to the new cluster
 # 
 # – Repeat 2 until all objects remain in the same cluster
 
@@ -87,12 +87,12 @@ for(k in 2:10){
 
 # scree plot 
 tot.withinss.std <- sapply(kmlist.std, function(x) x$tot.withinss)
-dev.new(width=6,height=4,noRStudioGD=TRUE)
+
 plot(2:10, tot.withinss.std / kmlist.std[[1]]$totss, type="b", 
      xlab="# Clusters", ylab="SSW / SST", main="Scree Plot: Std. Data")
 
 # plot results 
-dev.new(width=9, height=6, noRStudioGD=TRUE)
+
 par(mfrow=c(2,2))
 for(k in 3:6){
   map(database = "state")
